@@ -1,0 +1,37 @@
+{
+  "name": "pcli",
+  "version": "1.0.0",
+  "description": "Photo (CLI).",
+  "main": "src/index.js",
+  "bin": {
+    "@theo_champion/pcli": "bin/pcli",
+    "pcli": "bin/pcli"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theochampion/pcli.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/theochampion/pcli/issues"
+  },
+  "homepage": "https://github.com/theochampion/pcli#readme",
+  "dependencies": {
+    "@google-cloud/storage": "^5.3.0",
+    "aws-sdk": "^2.643.0",
+    "chalk": "^3.0.0",
+    "commander": "^5.0.0",
+    "dotenv": "^8.2.0",
+    "esm": "^3.2.25",
+    "form-data": "^3.0.0",
+    "fs-extra": "^9.0.0",
+    "node-fetch": "^2.6.0"
+  }
+}
