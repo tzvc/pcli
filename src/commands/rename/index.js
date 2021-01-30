@@ -3,6 +3,8 @@ const parse = require('csv-parse/lib/sync');
 var fs = require('fs');
 const chalk = require('chalk');
 
+var isWin = process.platform === 'win32';
+
 // helpers
 import { fileExistsWithExtOptions } from '../../helpers/fs_helper';
 /** dscli export command */
@@ -43,23 +45,38 @@ export const renameCmd = async (opts, cmdOpts) => {
   }
   console.log(chalk.green(`Found ${records.length} records. Starting...`));
 
-  let outputPaths = [];
+  let copyList = [];
   records.forEach(record => {
-    const pathBase = `${cmdOpts.inputFolderPath}/${record.seller_folder_nb}-${record.seller_file_nb}`;
-
-    if (fileExistsWithExtOptions(pathBase, ['.jpg']))
-      outputPaths.push(`${record.lotnb}.jpg`);
+    const pathBase = `${cmdOpts.inputFolderPath}${isWin ? '\\' : `/`}${
+      record.seller_folder_nb
+    }-${record.seller_file_nb}`;
+    const path = fileExistsWithExtOptions(pathBase, ['.jpg']);
+    if (path)
+      copyList.push({
+        src: path,
+        dest: `${cmdOpts.outputFolderPath}${isWin ? '\\' : `/`}${
+          record.lotnb
+        }.jpg`,
+      });
 
     for (let i = 1; i < 10; i++) {
-      if (fileExistsWithExtOptions(pathBase, [`_${i}.jpg`, ` (${i}).jpg`]))
-        outputPaths.push(`${record.lotnb}_${i}.jpg`);
+      const path = fileExistsWithExtOptions(pathBase, [
+        `_${i}.jpg`,
+        ` (${i}).jpg`,
+      ]);
+      if (path)
+        copyList.push({
+          src: path,
+          dest: `${cmdOpts.outputFolderPath}${isWin ? '\\' : `/`}${
+            record.lotnb
+          }_${i}.jpg`,
+        });
     }
   });
-  console.log(chalk.green(`Found ${outputPaths.length} matches. Copying...`));
+  console.log(chalk.green(`Found ${copyList.length} matches. Copying...`));
 
-  outputPaths.forEach(outputPath => {
-    const fullOutputPath = `${cmdOpts.outputFolderPath}/${outputPath}`;
-    fs.writeFileSync(`${cmdOpts.outputFolderPath}/${outputPath}`);
-    console.log(chalk.green(`Wrote ${fullOutputPath}`));
+  copyList.forEach(copyEntry => {
+    fs.copyFileSync(copyEntry.src, copyEntry.dest);
+    console.log(chalk.green(`Wrote ${copyEntry.src} -> ${copyEntry.dest}`));
   });
 };

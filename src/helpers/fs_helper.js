@@ -6,7 +6,7 @@ export const fileExistsWithExtOptions = (basePath, extOptions) => {
     const fullpath = `${basePath}${ext}`;
     // console.log(fullpath);
 
-    if (fs.existsSync(fullpath)) return true;
+    if (fs.existsSync(fullpath)) return fullpath;
   }
-  return false;
+  return null;
 };
