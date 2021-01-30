@@ -1,6 +1,4 @@
-![logo](https://user-images.githubusercontent.com/14275989/73751192-e1433f00-475e-11ea-853d-50952fb27862.png)
-
-# Photo CLI
+# Auction photo management CLI tool
 
 ## Requirements
 
