@@ -12,11 +12,5 @@
 Once logged in, you can install the CLI tool globally on your system by running:
 
 ```bash
-sudo npm install -g pcli@<version>
-```
-
-Example:
-
-```bash
-sudo npm install -g pcli@1.0.0
+npm install -g auction-mgmt-cli
 ```

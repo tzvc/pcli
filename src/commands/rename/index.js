@@ -22,16 +22,7 @@ export const renameCmd = async (opts, cmdOpts) => {
   try {
     records = parse(csv, {
       delimiter: ';',
-      columns: [
-        'lotnb',
-        'order',
-        'seller_file_nb',
-        'seller_folder_nb',
-        'seller_name',
-        'lot_desc',
-        'low_est',
-        'high_est',
-      ],
+      columns: ['lotnb', 'seller_folder_nb', 'seller_file_nb'],
       skip_empty_lines: true,
     });
     console.log(records);
