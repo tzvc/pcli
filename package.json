@@ -1,6 +1,6 @@
 {
   "name": "auction-mgmt-cli",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Photo (CLI).",
   "main": "src/index.js",
   "bin": {
@@ -27,10 +27,12 @@
   },
   "homepage": "https://github.com/theochampion/pcli#readme",
   "dependencies": {
+    "canvas": "^2.9.1",
     "chalk": "^3.0.0",
     "commander": "^5.0.0",
     "csv-parse": "^4.15.0",
     "dotenv": "^8.2.0",
-    "esm": "^3.2.25"
+    "esm": "^3.2.25",
+    "jimp": "^0.16.1"
   }
 }
