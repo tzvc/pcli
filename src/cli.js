@@ -28,7 +28,7 @@ export const cli = async (args) => {
           ...cmdOpt.opts(),
           inputFolderPath,
           outputFolderPath:
-            outputFolderPath !== undefined ? outputFolderPath : ".",
+            outputFolderPath !== undefined ? outputFolderPath : "./output",
         })
     );
 
